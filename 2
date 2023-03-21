@@ -1,0 +1,177 @@
+if game.PlaceId == 730951264 then
+   -- init
+    local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/GreenDeno/Venyx-UI-Library/main/source.lua"))()
+    
+
+   
+
+    --------------
+
+    players_service = game:GetService("Players")
+    players = {}
+    plr = players_service.LocalPlayer
+    character = plr.Character
+    hum = character:FindFirstChildWhichIsA("Humanoid")
+    root = character:FindFirstChild("HumanoidRootPart")
+
+    task.spawn(function()
+        while task.wait() do
+            character = plr.Character
+            if character ~= nil and character:FindFirstChildWhichIsA("Humanoid") ~= nil then
+                hum = character:FindFirstChildWhichIsA("Humanoid")
+                root = character:FindFirstChild("HumanoidRootPart")
+            end
+        end
+    end)
+
+    --------------
+
+    -- first page
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/Revenant", true))()
+Library.DefaultColor = Color3.fromRGB(255,0,0)
+
+Library:Notification({
+	Text = "The Rock has acquired night vision ",
+	Duration = 1
+})
+
+pcall(function()
+    local lighting = game:GetService("Lighting")
+    lighting.Ambient = Color3.fromRGB(255, 255, 255)
+    lighting.Brightness = 5
+    lighting.FogEnd = 1e10
+    for i, v in pairs(lighting:GetDescendants()) do
+        if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("SunRaysEffect") then
+            v.Enabled = false
+        end
+    end
+    lighting.Changed:Connect(function()
+        lighting.Ambient = Color3.fromRGB(255, 255, 255)
+        lighting.Brightness = 1
+        lighting.FogEnd = 1e10
+    end)
+    spawn(function()
+        local character = game:GetService("Players").LocalPlayer.Character
+        while wait() do
+            repeat wait() until character ~= nil
+            if not character.HumanoidRootPart:FindFirstChildWhichIsA("PointLight") then
+                local headlight = Instance.new("PointLight", character.HumanoidRootPart)
+                headlight.Brightness = 1
+                headlight.Range = 100
+            end
+        end
+    end)
+end)
+
+wait(1.5)
+
+-- Third script
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/Revenant", true))()
+Library.DefaultColor = Color3.fromRGB(255,0,0)
+
+Library:Notification({
+	Text = "Press X to reset",
+	Duration = 2
+})
+
+wait (0.5)
+
+-- Get the necessary services and objects
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local LocalPlayer = Players.LocalPlayer
+
+-- Create a new part above the "TheCajoler" player's head
+local part = Instance.new("Part")
+part.Size = Vector3.new(60, 1, 60)
+part.Position = Workspace.TheOrotund.Head.Position + Vector3.new(0, 7, 0) 
+part.Anchored = true
+part.CanCollide = true
+part.Transparency = 1
+part.Parent = Workspace
+
+-- Make the part follow the "Mouse" player's head
+game:GetService("RunService").RenderStepped:Connect(function()
+    part.CFrame = CFrame.new(Workspace.TheOrotund.Head.Position + Vector3.new(0, 7, 0))
+end)
+
+-- Teleport the local player above the part using a CFrame
+LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(part.Position + Vector3.new(0, 7, 0))
+
+-- Check if the player moves too far away from the part and teleport them back
+
+local MAX_DISTANCE = 37 -- Maximum distance the player can move away from the part
+while true do
+if (LocalPlayer.Character.HumanoidRootPart.Position - part.Position).Magnitude > MAX_DISTANCE then
+LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(part.Position + Vector3.new(0, 7, 0))
+end
+part.CanCollide = true
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 27
+if game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.X) then
+    part.Transparency = 1
+    part.CanCollide = false
+    wait()
+    part:Destroy()
+    LocalPlayer.Character.Humanoid.Health = 0
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+    break
+end
+
+wait() -- Check every half second
+end
+
+-- Final notification
+Library:Notification({
+Text = "The script has ended.",
+Duration = 3
+})
+
+    -- second page
+    
+
+    -- load
+    
+    -- SCRIPTING
+
+    local OldNameCall = nil
+    OldNameCall = hookmetamethod(game, "__namecall", function(Self, ...)
+        local NamecallMethod = getnamecallmethod()
+
+        if not checkcaller() and Self == plr and NamecallMethod == "Kick" then
+            return wait(9e9)
+        end
+
+        return OldNameCall(Self, ...)
+    end)
+
+    local m = require(plr.PlayerScripts.COM)
+
+    local function getPlot()
+        return m.CurrentPLOT
+    end
+
+    task.spawn(function()
+        local fixing = false
+        game:GetService("RunService").Heartbeat:Connect(function()
+            if testsignal_af_var == true then
+                game:GetService("ReplicatedStorage").ZiNoy.Apps.TestSignal:FireServer(getPlot(), "Test Signal")
+                game:GetService("ReplicatedStorage").ZiNoy.Apps.TestSignal:FireServer(getPlot(), "Ping 2.0")
+            end
+            if auto_fix_bugs_var == true then
+                for _, obj in pairs(getPlot().Wires.Conduits:GetChildren()) do
+                    if obj:FindFirstChild("BugFold") and fixing == false then
+                        repeat task.wait() until character ~= nil
+                        fixing = true
+                        local oldcf = root.CFrame
+                        local prompt = obj:FindFirstChild("BugFold"):FindFirstChildOfClass("Part"):FindFirstChildOfClass("ProximityPrompt")
+                        root.CFrame = CFrame.new(obj:FindFirstChild("BugFold"):FindFirstChildOfClass("Part").CFrame.X+1.5,obj:FindFirstChild("BugFold"):FindFirstChildOfClass("Part").CFrame.Y,obj:FindFirstChild("BugFold"):FindFirstChildOfClass("Part").CFrame.Z)
+                        fireproximityprompt(prompt, prompt.MaxActivationDistance)
+                        wait(.2)
+                        root.CFrame = oldcf
+                        fixing = false
+                    end
+                end
+            end
+        end)
+    end) 
+end
